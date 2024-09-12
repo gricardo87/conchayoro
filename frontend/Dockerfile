@@ -4,7 +4,9 @@ COPY package*.json ./
 COPY . .
 RUN npm i @vercel/flags
 RUN npm install
-RUN npm run build
+#RUN npm run build
+RUN npm build
+RUN run dev
 FROM nginx:1.19.3-alpine as production-stage
 COPY --from=build-stage /app/.next/server/app /usr/share/nginx/html
 
